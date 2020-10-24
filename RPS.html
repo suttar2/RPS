@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<script>
+
+function computerPlay(){
+    var computerValue = ['Rock', 'Paper', 'Scissors'];
+    var computerChoice = Math.floor(Math.random() * computerValue.length);
+
+    return(computerValue[computerChoice]);
+}
+
+var playerSelection = window.prompt('EnteryorChoice');
+var computerSelection = computerPlay();
+
+function playRound(playerSelection, computerSelection) {   
+    
+    playerSelection = playerSelection.toUpperCase();
+    computerSelection = computerSelection.toUpperCase();
+
+    if (playerSelection == 'ROCK'){
+        if (computerSelection == 'PAPER'){
+            return 'Computer Wins!';
+        }
+        else if(computerSelection == 'SCISSORS'){
+            return 'Player Wins!';
+        }
+        else{
+            return 'Draw!';
+        }
+    }
+
+    if (playerSelection == 'PAPER'){
+        if (computerSelection == 'SCISSORS'){
+            return 'Computer Wins!';
+        }
+        else if (computerSelection == "ROCK"){
+            return 'Player Wins!';
+        }
+        else{
+            return 'Draw!';
+        }
+
+    }
+
+    if (playerSelection == 'SCISSORS'){
+        if(computerSelection == 'PAPER'){
+            return 'Player Wins!';
+        }
+        else if(computerSelection == 'ROCK'){
+            return 'Computer Wins!';
+        }
+        else{
+            return 'Draw!';
+        }
+    }
+
+}
+
+
+
+function game(){
+    var computerScore=0;
+    var playerScore=0;
+    var round=0;
+    var currentRound = playRound(playerSelection, computerSelection)
+    
+    console.log('*computer score is', computerScore);
+    console.log('*player score is', playerScore);
+    console.log('*round number is', round);
+
+    for (round = 1; round < 5; round = round + 1){ 
+        
+        currentRound = playRound(playerSelection, computerSelection)
+        
+        if (currentRound == 'Computer Wins!'){
+            computerScore ++;
+            console.log('Computer Victory!');
+            computerSelection = computerPlay();
+            playerSelection = window.prompt('EnteryorChoice');
+
+            console.log('*computer score is', computerScore);
+            console.log('*player score is', playerScore);
+            console.log('*round number is', round);
+        
+        }else if (currentRound == 'Player Wins!'){
+            playerScore ++;
+            console.log('Player Victory!');
+            computerSelection = computerPlay();
+            playerSelection = window.prompt('EnteryorChoice');
+
+            console.log('*computer score is', computerScore);
+            console.log('*player score is', playerScore);
+            console.log('*round number is', round);
+        
+        }else if (currentRound == 'Draw!'){
+            console.log('Draw, Throw Again!');
+            computerSelection = computerPlay();
+            playerSelection = window.prompt('EnteryorChoice');
+
+            console.log('*computer score is', computerScore);
+            console.log('*player score is', playerScore);
+            console.log('*round number is', round);
+
+        }
+        
+        if (round >= 4){
+            
+            if (playerScore > computerScore) {
+                
+                return 'Player wins the round!';
+            
+            }
+
+            else if (computerScore > playerScore){
+            
+                return 'Computer wins the round!';
+        
+            }else{
+        
+                return 'The whole round was a Draw.';
+
+            }
+        }
+    }
+}
+
+
+console.log(game());
+
+
+</script>
